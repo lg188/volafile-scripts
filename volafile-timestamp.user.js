@@ -4,7 +4,7 @@
 // @description Adds timestamps to chat messages on Volafile.
 // @match       http://volafile.io/r/*
 // @include     http://volafile.io/r/*
-// @version     2
+// @version     3
 // ==/UserScript==
 
 /*
@@ -16,12 +16,25 @@
  *		Basic script
  *	Version 2:
  *		Cleaned out the script
+ *	Version 3:
+ *		Fixed the duplication bug
  **/
+
+console.debug("volafile-timestamps is running ");
 
 var target = document.querySelector('#chat_messages');
 var observer = new MutationObserver(function (mutations) {
 	mutations.forEach(function (mutation) {
-		addTimestamp();
+
+		var valid = mutation.target.lastChild;
+		var bla = valid.hasAttribute('timeAdded');
+
+		if(bla == false ){
+			addTimestamp();
+			valid.setAttribute('timeAdded','true');
+		}else{
+			valid.setAttribute("timeAdded", 'false');
+		}
 	});
 });
 
