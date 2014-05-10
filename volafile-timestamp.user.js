@@ -8,7 +8,7 @@
 // ==/UserScript==
 
 /*
- *	@Author: unknown
+ *	@Author: Dongmaster
  *	@Author: lg188
  *
  *	Changelog:
