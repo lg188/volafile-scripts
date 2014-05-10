@@ -30,11 +30,9 @@ var config = {
 	childList: true,
 	characterData: true
 };
-var date = new Date();
-var hours = date.getHours();
-var minutes = date.getMinutes();
-var seconds = date.getSeconds();
-var finalTime = hours + ':' + minutes + ':' + seconds;
+
+var date, hours, minutes,seconds,finalTime;
+
 function addTimestamp() {
 	date = new Date();
 	hours = date.getHours()
