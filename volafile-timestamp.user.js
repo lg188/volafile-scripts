@@ -4,7 +4,7 @@
 // @description Adds timestamps to chat messages on Volafile.
 // @match       http://volafile.io/r/*
 // @include     http://volafile.io/r/*
-// @version     3
+// @version     4
 // ==/UserScript==
 
 /*
@@ -18,6 +18,8 @@
  *		Cleaned out the script
  *	Version 3:
  *		Fixed the duplication bug
+ *  	Version 4:
+ *      	Fixed hours not having a 0 (zero) behind them if the hour is 9 or below.
  **/
 
 console.debug("volafile-timestamps is running ");
@@ -54,9 +56,14 @@ function addTimestamp() {
 	if (seconds <= 9) {
 		seconds = '0' + seconds;
 	}
+    
 	if (minutes <= 9) {
-		minutes = '0' + minutes
+		minutes = '0' + minutes;
 	}
+    	if (hours <= 9) {
+        	hours = '0' + hours;
+	}
+    
 
 	finalTime = hours + ':' + minutes + ':' + seconds;
 	document.getElementsByClassName('username') [document.getElementsByClassName('username') .length - 1].innerHTML = finalTime + ' | ' + document.getElementsByClassName('username') [document.getElementsByClassName('username') .length - 1].innerHTML;
